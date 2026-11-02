@@ -1,8 +1,25 @@
+
 @import "tailwindcss";
 
+/* Tailwind CSS v4: Enable class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light Theme */
 :root {
+  color-scheme: light;
   --background: #ffffff;
   --foreground: #171717;
+  --surface: #f8fafc;
+  --border: #e5e7eb;
+}
+
+/* Dark Theme */
+.dark {
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --surface: #171717;
+  --border: #374151;
 }
 
 @theme inline {
@@ -12,15 +29,25 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  min-height: 100%;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Reusable theme utilities */
+.theme-surface {
+  background-color: var(--surface);
+}
+
+.theme-border {
+  border-color: var(--border);
 }
