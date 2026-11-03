@@ -5,7 +5,7 @@ import { jwtClient } from 'better-auth/client/plugins';
 export const authClient = createAuthClient({
   baseURL:
     process.env.NEXT_PUBLIC_API_URL ||
-    'http://localhost:5000',
+    'https://event-8-server.onrender.com',
 
   plugins: [
     jwtClient()
