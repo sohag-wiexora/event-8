@@ -1,9 +1,8 @@
-
 'use client';
 
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Check, X } from 'lucide-react';
 import { authClient } from '@/lib/auth-client';
 
 export default function RegisterPage() {
@@ -15,22 +14,44 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
+  const passwordRules = {
+    minLength: password.length >= 6,
+    uppercase: /[A-Z]/.test(password),
+    lowercase: /[a-z]/.test(password),
+    number: /[0-9]/.test(password),
+    special: /[^A-Za-z0-9]/.test(password),
+  };
+
+  const isStrongPassword = Object.values(passwordRules).every(Boolean);
+
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage('');
 
-    if (!/[A-Z]/.test(password)) {
-      setMessage('Password must contain an uppercase letter.');
-      return;
-    }
-
-    if (!/[a-z]/.test(password)) {
-      setMessage('Password must contain a lowercase letter.');
-      return;
-    }
-
-    if (password.length < 6) {
+    if (!passwordRules.minLength) {
       setMessage('Password must be at least 6 characters.');
+      return;
+    }
+
+    if (!passwordRules.uppercase) {
+      setMessage('Password must contain an uppercase letter (A-Z).');
+      return;
+    }
+
+    if (!passwordRules.lowercase) {
+      setMessage('Password must contain a lowercase letter (a-z).');
+      return;
+    }
+
+    if (!passwordRules.number) {
+      setMessage('Password must contain a number (0-9).');
+      return;
+    }
+
+    if (!passwordRules.special) {
+      setMessage(
+        'Password must contain a special character (e.g. $, @, #, !).',
+      );
       return;
     }
 
@@ -115,6 +136,89 @@ export default function RegisterPage() {
           </button>
         </div>
 
+        <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-800">
+          <p className="mb-2 text-xs font-semibold text-gray-700 dark:text-gray-300">
+            Password requirements
+          </p>
+
+          <ul className="grid grid-cols-1 gap-1 text-xs sm:grid-cols-2">
+            <li
+              className={`flex items-center gap-2 ${
+                passwordRules.minLength
+                  ? 'text-green-600 dark:text-green-400'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`}
+            >
+              {passwordRules.minLength ? (
+                <Check size={15} />
+              ) : (
+                <X size={15} />
+              )}
+              <span>At least 6 characters</span>
+            </li>
+
+            <li
+              className={`flex items-center gap-2 ${
+                passwordRules.uppercase
+                  ? 'text-green-600 dark:text-green-400'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`}
+            >
+              {passwordRules.uppercase ? (
+                <Check size={15} />
+              ) : (
+                <X size={15} />
+              )}
+              <span>One uppercase letter</span>
+            </li>
+
+            <li
+              className={`flex items-center gap-2 ${
+                passwordRules.lowercase
+                  ? 'text-green-600 dark:text-green-400'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`}
+            >
+              {passwordRules.lowercase ? (
+                <Check size={15} />
+              ) : (
+                <X size={15} />
+              )}
+              <span>One lowercase letter</span>
+            </li>
+
+            <li
+              className={`flex items-center gap-2 ${
+                passwordRules.number
+                  ? 'text-green-600 dark:text-green-400'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`}
+            >
+              {passwordRules.number ? (
+                <Check size={15} />
+              ) : (
+                <X size={15} />
+              )}
+              <span>One number</span>
+            </li>
+
+            <li
+              className={`flex items-center gap-2 ${
+                passwordRules.special
+                  ? 'text-green-600 dark:text-green-400'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`}
+            >
+              {passwordRules.special ? (
+                <Check size={15} />
+              ) : (
+                <X size={15} />
+              )}
+              <span>One special character</span>
+            </li>
+          </ul>
+        </div>
+
         {message && (
           <p
             role="status"
@@ -130,7 +234,7 @@ export default function RegisterPage() {
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || !isStrongPassword}
           className="w-full rounded-lg bg-black p-3 font-semibold text-white transition-colors hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-gray-200"
         >
           {loading ? 'Creating Account...' : 'Register'}
