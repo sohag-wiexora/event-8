@@ -17,6 +17,7 @@ export default function LoginPage() {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [message, setMessage] = useState('');
 
+  // Email and password login
   const handleLogin = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
@@ -26,38 +27,46 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-     const { error } = await authClient.signIn.email({
-     email,
-     password,
-     callbackURL: `${window.location.origin}/`,
-     });
+      const { error } = await authClient.signIn.email({
+        email,
+        password,
+        callbackURL: `${window.location.origin}/`,
+      });
 
       if (error) {
         setMessage(error.message || 'Login failed.');
         return;
       }
 
-      router.push('/');
+      // Login successful: return to home page
+      router.replace('/');
       router.refresh();
-    } catch {
+    } catch (error) {
+      console.error('Login Error:', error);
       setMessage('Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
+  // Google login
   const handleGoogleLogin = async () => {
     setMessage('');
 
     try {
       setGoogleLoading(true);
 
-      await authClient.signIn.social({
-       provider: 'google',
-      callbackURL: `${window.location.origin}/`,
-       });
+      const { error } = await authClient.signIn.social({
+        provider: 'google',
+        callbackURL: `${window.location.origin}/`,
+      });
 
-    } catch {
+      if (error) {
+        setMessage(error.message || 'Google login failed.');
+        setGoogleLoading(false);
+      }
+    } catch (error) {
+      console.error('Google Login Error:', error);
       setMessage('Google login failed. Please try again.');
       setGoogleLoading(false);
     }
@@ -125,11 +134,11 @@ export default function LoginPage() {
         </button>
 
         <div className="relative flex items-center">
-          <div className="flex-1grow border-t border-gray-300 dark:border-gray-700" />
+          <div className="flex-1 border-t border-gray-300 dark:border-gray-700" />
           <span className="px-3 text-sm text-gray-500 dark:text-gray-400">
             OR
           </span>
-          <div className="flex-1grow border-t border-gray-300 dark:border-gray-700" />
+          <div className="flex-1 border-t border-gray-300 dark:border-gray-700" />
         </div>
 
         <button
