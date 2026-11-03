@@ -34,6 +34,7 @@ export default function UpcomingEventsPage() {
   const { data: session, isPending } = authClient.useSession();
 
   // Load upcoming events
+  
   useEffect(() => {
     let cancelled = false;
 
@@ -79,12 +80,15 @@ export default function UpcomingEventsPage() {
   }, []);
 
   // Load IDs of events already joined by the current user
+
   useEffect(() => {
     let cancelled = false;
 
     const fetchJoinedIds = async () => {
       try {
+       
         // Wait until the session state has settled.
+
         await Promise.resolve();
 
         if (!session?.user) {
@@ -130,6 +134,7 @@ export default function UpcomingEventsPage() {
   }, [isPending, session?.user]);
 
   // Join event
+
   const handleJoin = async (eventId: string) => {
     setMessage('');
 
@@ -189,6 +194,7 @@ export default function UpcomingEventsPage() {
   };
 
   // Search and category filters
+
   const categories = [
     'All',
     ...Array.from(new Set(events.map((event) => event.eventType))),
@@ -225,6 +231,7 @@ export default function UpcomingEventsPage() {
         </div>
 
         {/* Search and Filter */}
+
         <div className="mb-8 flex flex-col gap-4 sm:flex-row">
           <input
             type="search"
@@ -248,6 +255,7 @@ export default function UpcomingEventsPage() {
         </div>
 
         {/* Feedback */}
+
         {message && (
           <div
             role="status"
@@ -258,6 +266,7 @@ export default function UpcomingEventsPage() {
         )}
 
         {/* Loading Skeleton */}
+
         {loading && (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3, 4, 5, 6].map((item) => (
@@ -278,6 +287,7 @@ export default function UpcomingEventsPage() {
         )}
 
         {/* Empty State */}
+
         {!loading && filteredEvents.length === 0 && (
           <div className="rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center dark:border-gray-700 dark:bg-gray-900">
             <div className="mb-4 text-5xl">📅</div>
@@ -303,6 +313,7 @@ export default function UpcomingEventsPage() {
         )}
 
         {/* Events Grid */}
+
         {!loading && filteredEvents.length > 0 && (
           <>
             <p className="mb-5 text-sm text-gray-500 dark:text-gray-400">
@@ -319,6 +330,7 @@ export default function UpcomingEventsPage() {
                     className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900"
                   >
                     {/* Image */}
+
                     <div className="relative h-52 overflow-hidden bg-gray-200 dark:bg-gray-800">
                       {event.thumbnail ? (
                         <Image
@@ -341,6 +353,7 @@ export default function UpcomingEventsPage() {
                     </div>
 
                     {/* Content */}
+
                     <div className="p-5">
                       <h2 className="line-clamp-2 text-xl font-bold text-gray-900 dark:text-white">
                         {event.title}
@@ -357,6 +370,7 @@ export default function UpcomingEventsPage() {
                       </div>
 
                       {/* Actions */}
+
                       <div className="mt-6 flex gap-3">
                         <Link
                           href={`/events/${event._id}`}

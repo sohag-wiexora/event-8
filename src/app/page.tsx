@@ -103,6 +103,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-white text-gray-900 transition-colors duration-200 dark:bg-[#0a0a0a] dark:text-gray-100">
 
       {/* Hero Section */}
+      
       <section className="relative overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 opacity-30">
           <img
@@ -160,6 +161,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Events */}
+
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <div>
@@ -258,6 +260,7 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
+
       <section className="bg-gray-50 px-5 py-20 transition-colors duration-200 dark:bg-gray-900 sm:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-2xl text-center">
@@ -299,6 +302,7 @@ export default function HomePage() {
       </section>
 
       {/* Community Gallery */}
+
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
         <div className="text-center">
           <p className="font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
@@ -337,6 +341,7 @@ export default function HomePage() {
       </section>
 
       {/* Newsletter */}
+
       <section className="bg-blue-700 px-5 py-16 text-white sm:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">

@@ -69,6 +69,7 @@ function JoinedEventsContent() {
 
   // Load joined events without calling a state-updating callback directly
   // inside the effect body.
+  
   useEffect(() => {
     let cancelled = false;
 
@@ -151,7 +152,9 @@ function JoinedEventsContent() {
   return (
     <main className="min-h-screen bg-gray-50 px-4 py-12 dark:bg-gray-950">
       <div className="mx-auto max-w-7xl">
+        
         {/* Page Header */}
+
         <div className="mb-10">
           <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
             Your Activities
@@ -168,6 +171,7 @@ function JoinedEventsContent() {
         </div>
 
         {/* Event Count */}
+
         {!loading && !error && (
           <div className="mb-6">
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -181,6 +185,7 @@ function JoinedEventsContent() {
         )}
 
         {/* Loading Skeleton */}
+
         {loading && (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map((item) => (
@@ -201,6 +206,7 @@ function JoinedEventsContent() {
         )}
 
         {/* Error State */}
+
         {!loading && error && (
           <div className="rounded-2xl border border-red-200 bg-red-50 p-8 text-center dark:border-red-900 dark:bg-red-950/30">
             <p className="font-medium text-red-600 dark:text-red-400">
@@ -217,6 +223,7 @@ function JoinedEventsContent() {
         )}
 
         {/* Empty State */}
+
         {!loading && !error && events.length === 0 && (
           <div className="rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center dark:border-gray-700 dark:bg-gray-900">
             <div className="mb-4 text-5xl">📅</div>
@@ -240,6 +247,7 @@ function JoinedEventsContent() {
         )}
 
         {/* Joined Events Grid */}
+
         {!loading && !error && events.length > 0 && (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {events.map((event) => (
@@ -248,6 +256,7 @@ function JoinedEventsContent() {
                 className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900"
               >
                 {/* Event Image */}
+
                 <div className="relative h-52 overflow-hidden bg-gray-200 dark:bg-gray-800">
                   {event.thumbnail ? (
                     <Image
@@ -270,6 +279,7 @@ function JoinedEventsContent() {
                 </div>
 
                 {/* Event Information */}
+
                 <div className="p-5">
                   <h2 className="line-clamp-2 text-xl font-bold text-gray-900 dark:text-white">
                     {event.title}
@@ -300,6 +310,7 @@ function JoinedEventsContent() {
                   </div>
 
                   {/* Joined Information */}
+
                   <div className="mt-5 flex items-center justify-between rounded-lg bg-green-50 px-4 py-3 dark:bg-green-950/30">
                     <span className="text-sm font-semibold text-green-700 dark:text-green-400">
                       ✓ Joined

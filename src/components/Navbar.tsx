@@ -52,7 +52,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+        
         {/* Logo */}
+
         <Link
           href="/"
           onClick={closeMenus}
@@ -62,6 +64,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
+
         <div className="hidden items-center gap-2 lg:flex">
           {navLinks.map((link) => (
             <Link
@@ -87,6 +90,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Right Side */}
+
         <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
 
@@ -102,6 +106,7 @@ export default function Navbar() {
                 className="flex items-center gap-2 rounded-full p-1 transition hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 {/* Profile Image */}
+
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-blue-100 text-sm font-bold text-blue-700 dark:border-gray-700 dark:bg-blue-950 dark:text-blue-300">
                   {user.image ? (
                     <img
@@ -124,6 +129,7 @@ export default function Navbar() {
               </button>
 
               {/* Profile Dropdown */}
+
               {profileOpen && (
                 <div className="absolute right-0 top-full z-50 mt-3 w-64 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-900">
                   <div className="border-b border-gray-200 p-4 dark:border-gray-700">
@@ -208,6 +214,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Right Side */}
+
         <div className="flex items-center gap-3 lg:hidden">
           <ThemeToggle />
 
@@ -224,6 +231,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Navigation */}
+
       {menuOpen && (
         <div className="border-t border-gray-200 bg-white px-5 py-4 dark:border-gray-800 dark:bg-gray-950 lg:hidden">
           <div className="mx-auto max-w-7xl space-y-2">
@@ -241,6 +249,7 @@ export default function Navbar() {
             {user ? (
               <>
                 {/* Mobile Profile */}
+
                 <div className="my-3 flex items-center gap-3 border-y border-gray-200 py-4 dark:border-gray-800">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-gray-200 bg-blue-100 text-sm font-bold text-blue-700 dark:border-gray-700 dark:bg-blue-950 dark:text-blue-300">
                     {user.image ? (

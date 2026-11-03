@@ -37,7 +37,6 @@ function EventDetailsContent() {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  // Load public event details
   useEffect(() => {
     if (!eventId) return;
 
@@ -80,7 +79,8 @@ function EventDetailsContent() {
     };
   }, [eventId, API_URL]);
 
-  // Check whether the logged-in user already joined
+  // Check korbe logged-in user already joined
+
   useEffect(() => {
     if (isPending || !session?.user || !eventId) return;
 
@@ -124,7 +124,8 @@ function EventDetailsContent() {
     };
   }, [session?.user, isPending, eventId, API_URL]);
 
-  // Join event
+  // event Join 
+
   const handleJoin = async () => {
     if (!session?.user) {
       router.push('/login');
@@ -182,7 +183,8 @@ function EventDetailsContent() {
     }
   };
 
-  // Loading skeleton
+  // Loading section
+
   if (loading) {
     return (
       <main className="min-h-screen bg-gray-50 px-4 py-12 dark:bg-gray-950">
@@ -196,7 +198,8 @@ function EventDetailsContent() {
     );
   }
 
-  // Event not found
+  // Event not found section
+
   if (error && !event) {
     return (
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 dark:bg-gray-950">
@@ -244,7 +247,9 @@ function EventDetailsContent() {
         </Link>
 
         <article className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
+          
           {/* Event Image */}
+
           <div className="relative h-64 w-full bg-gray-200 dark:bg-gray-800 sm:h-96">
             <Image
               src={event.thumbnail}
@@ -261,7 +266,9 @@ function EventDetailsContent() {
           </div>
 
           <div className="p-5 sm:p-8 lg:p-10">
+            
             {/* Event Title */}
+
             <div className="border-b border-gray-200 pb-6 dark:border-gray-700">
               <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
                 Event Details
@@ -277,6 +284,7 @@ function EventDetailsContent() {
             </div>
 
             {/* Event Information */}
+
             <div className="grid gap-5 border-b border-gray-200 py-7 dark:border-gray-700 sm:grid-cols-2">
               <div className="rounded-xl bg-gray-50 p-5 dark:bg-gray-800">
                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -322,7 +330,8 @@ function EventDetailsContent() {
               </div>
             </div>
 
-            {/* Join Event */}
+            {/* Joined Event */}
+
             <div className="pt-7">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                 Participate in This Event

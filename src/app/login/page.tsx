@@ -18,6 +18,7 @@ export default function LoginPage() {
   const [message, setMessage] = useState('');
 
   // Email and password login
+  
   const handleLogin = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
@@ -39,6 +40,7 @@ export default function LoginPage() {
       }
 
       // Login successful: return to home page
+
       router.replace('/');
       router.refresh();
     } catch (error) {
@@ -50,6 +52,7 @@ export default function LoginPage() {
   };
 
   // Google login
+
   const handleGoogleLogin = async () => {
     setMessage('');
 

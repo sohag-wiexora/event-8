@@ -2,9 +2,11 @@
 @import "tailwindcss";
 
 /* Tailwind CSS v4: Enable class-based dark mode */
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* Light Theme */
+
 :root {
   color-scheme: light;
   --background: #ffffff;
@@ -14,6 +16,7 @@
 }
 
 /* Dark Theme */
+
 .dark {
   color-scheme: dark;
   --background: #0a0a0a;
@@ -44,6 +47,7 @@ body {
 }
 
 /* Reusable theme utilities */
+
 .theme-surface {
   background-color: var(--surface);
 }
